@@ -1,8 +1,20 @@
+'use client'
 import React from 'react'
+import { useRouter } from 'next/navigation'
 
 const Facebook = () => {
+    const router = useRouter()
+
+    const handleOnClickBack = () => {
+        router.push('/home')
+    }
     return (
-        <div>Facebook</div>
+        <div>
+            <span>Facebook</span>
+            <div>
+                <button onClick={() => handleOnClickBack()}>Back to homepage</button>
+            </div>
+        </div>
     )
 }
 
