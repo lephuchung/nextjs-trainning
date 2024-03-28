@@ -15,7 +15,10 @@ export default function Home() {
           <p>
             Lê Phúc Hưng Hello world
           </p>
-          <button onClick={() => handleOnClickButton()}>Get to homepage</button>
+          <p onClick={() => handleOnClickButton()}>
+            Get to Example1
+          </p>
+
         </div>
         <div>
           <a
