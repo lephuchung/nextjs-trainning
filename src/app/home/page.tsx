@@ -2,6 +2,8 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React from 'react'
+import hehe from '@/styles/app.module.css'
+import haha from '@/styles/noris.module.css'
 
 const HomePage = () => {
     const router = useRouter();
@@ -11,7 +13,11 @@ const HomePage = () => {
     return (
         <div>
             <ul>
-                <li><Link href='/home/facebook'>Facebook</Link></li>
+                <li className={hehe['test']}>
+                    <Link href='/home/facebook'>
+                        <span className={haha['test']}>Facebook</span>
+                    </Link>
+                </li>
                 <li><Link href='/home/tiktok'>Tiktok</Link></li>
                 <li><Link href='/home/youtube'>Youtube</Link></li>
             </ul>
