@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import styles from './page.module.css'
 import { useRouter } from 'next/navigation';
+import { Button } from 'react-bootstrap';
 
 export default function Home() {
   const router = useRouter();
@@ -15,9 +16,8 @@ export default function Home() {
           <p>
             Lê Phúc Hưng Hello world
           </p>
-          <p onClick={() => handleOnClickButton()}>
-            Get to Example1
-          </p>
+
+          <Button variant='success' onClick={() => handleOnClickButton()} >Get to Example1</Button>
 
         </div>
         <div>
