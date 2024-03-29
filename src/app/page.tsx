@@ -6,8 +6,11 @@ import { Button } from 'react-bootstrap';
 
 export default function Home() {
   const router = useRouter();
-  const handleOnClickButton = () => {
+  const handleOnClickExample1 = () => {
     router.push('/home')
+  }
+  const handleOnClickExample2 = () => {
+    router.push('/example2')
   }
   return (
     <main className={styles.main}>
@@ -16,9 +19,10 @@ export default function Home() {
           <p>
             Lê Phúc Hưng Hello world
           </p>
-
-          <Button variant='success' onClick={() => handleOnClickButton()} >Get to Example1</Button>
-
+          <hr />
+          <Button variant='success' onClick={() => handleOnClickExample1()} >Get to Example1</Button>
+          <hr />
+          <Button variant='success' onClick={() => handleOnClickExample2()} >Get to Example2</Button>
         </div>
         <div>
           <a
