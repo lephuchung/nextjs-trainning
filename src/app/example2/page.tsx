@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react'
 import useSWR from 'swr'
 import MyTable from '@/components/table'
+import MyModal from '@/components/modal'
 
 const Example2 = () => {
 
