@@ -12,7 +12,6 @@ export default function Ex2Layout({
             <Header />
             <Container>
                 {children}
-                <MyTable />
             </Container>
             <Footer />
         </>

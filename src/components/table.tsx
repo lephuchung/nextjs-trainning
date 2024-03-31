@@ -1,30 +1,39 @@
 'use client'
 import Table from 'react-bootstrap/Table';
+import { Button } from 'react-bootstrap';
 
-function MyTable() {
+interface IProps {
+    blogs: IBlog[]
+}
+
+function MyTable(props: IProps) {
+    const { blogs } = props
     return (
         <Table striped bordered hover size="sm">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
+                    <th>No</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
+                {blogs && blogs.map((item, index) => {
+                    return (
+                        <tr key={item.id}>
+                            <td>{index + 1}</td>
+                            <td>{item.title}</td>
+                            <td>{item.author}</td>
+                            <td>
+                                <Button variant='primary'>Detail</Button>
+                                <Button style={{ margin: '0 5px' }} variant='warning'>Edit</Button>
+                                <Button variant='danger'>Delete</Button>
+                            </td>
+                        </tr>
+                    )
+                })}
+
             </tbody>
         </Table>
     );
