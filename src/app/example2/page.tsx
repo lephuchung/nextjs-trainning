@@ -1,16 +1,33 @@
 'use client'
 import React, { useEffect } from 'react'
+import useSWR from 'swr'
 
 const Example2 = () => {
-    const fetchData = async (url: string) => {
-        const res = await fetch(url);
-        const data = await res.json();
-        console.log('check data: ', data);
 
-    }
-    useEffect(() => {
-        fetchData('http://localhost:8000/blogs')
-    }, [])
+    const fetcher = (url: string) => fetch(url).then((res) => res.json())
+
+    const { data, error, isLoading } = useSWR(
+        'http://localhost:8000/blogs',
+        fetcher,
+        {
+            revalidateIfStale: false,
+            revalidateOnFocus: false,
+            revalidateOnReconnect: false
+        }
+    )
+
+    console.log('check data: ', data);
+
+
+    // const fetchData = async (url: string) => {
+    //     const res = await fetch(url);
+    //     const data = await res.json();
+    //     console.log('check data: ', data);
+
+    // }
+    // useEffect(() => {
+    //     fetchData('http://localhost:8000/blogs')
+    // }, [])
     return (
         <div>
             <h1>Hahaha, hello world</h1>
