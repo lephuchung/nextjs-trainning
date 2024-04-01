@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/Table';
 import { Button } from 'react-bootstrap';
 import MyModal from '@/components/modal'
 import { useState } from 'react';
+import EditModal from './EditModal';
 
 interface IProps {
     blogs: IBlog[]
@@ -10,8 +11,17 @@ interface IProps {
 
 function MyTable(props: IProps) {
     const { blogs } = props
+
     const [show, setShow] = useState<boolean>(false)
     const handleShow = () => setShow(true);
+
+    const [blogEdit, setBlogEdit] = useState<IBlog | null>(null)
+    const [showEdit, setShowEdit] = useState<boolean>(false)
+    const handleOnClickEdit = () => {
+        setShowEdit(true);
+    }
+
+
     return (
         <div>
             <div className='mb-1' style={{
@@ -41,7 +51,7 @@ function MyTable(props: IProps) {
                                 <td>{item.author}</td>
                                 <td>
                                     <Button variant='primary'>Detail</Button>
-                                    <Button style={{ margin: '0 5px' }} variant='warning'>Edit</Button>
+                                    <Button style={{ margin: '0 5px' }} variant='warning' onClick={() => { handleOnClickEdit(); setBlogEdit(item) }}>Edit</Button>
                                     <Button variant='danger'>Delete</Button>
                                 </td>
                             </tr>
@@ -51,7 +61,8 @@ function MyTable(props: IProps) {
                 </tbody>
             </Table>
             <MyModal show={show} setShow={setShow} />
-        </div>
+            <EditModal showEdit={showEdit} setShowEdit={setShowEdit} blogEdit={blogEdit} setBlogEdit={setBlogEdit} />
+        </div >
     );
 }
 
