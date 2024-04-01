@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { mutate } from 'swr';
 
 interface IProps {
     show: boolean
@@ -59,12 +60,10 @@ function MyModal(props: IProps) {
         }).then(res => res.json()).then(res => {
             if (res) {
                 toast.success('Add success!');
+                handleClose();
+                mutate('http://localhost:8000/blogs')
             }
         });
-        setTitle('');
-        setAuthor('');
-        setContent('');
-        handleClose();
     }
 
     return (
