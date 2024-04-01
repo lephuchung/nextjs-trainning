@@ -1,4 +1,5 @@
 'use client'
+import { Metadata } from 'next'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { Button } from 'react-bootstrap'

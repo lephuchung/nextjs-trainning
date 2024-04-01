@@ -1,5 +1,10 @@
 import React, { useEffect } from 'react'
+import { Metadata } from 'next'
 
+export const metadata: Metadata = {
+    title: 'Home page',
+    description: 'test metadata'
+}
 const Example2 = () => {
     return (
         <div>
