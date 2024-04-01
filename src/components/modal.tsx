@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 interface IProps {
     show: boolean
@@ -11,9 +12,9 @@ interface IProps {
 
 function MyModal(props: IProps) {
     const { show, setShow } = props
-    const [Title, setTitle] = useState<string>('');
-    const [Author, setAuthor] = useState<string>('');
-    const [Content, setContent] = useState<string>('');
+    const [title, setTitle] = useState<string>('');
+    const [author, setAuthor] = useState<string>('');
+    const [content, setContent] = useState<string>('');
     const handleClose = () => {
         setShow(false);
         setTitle('');
@@ -34,11 +35,36 @@ function MyModal(props: IProps) {
     }
 
     const handleOnClickSave = () => {
-        let data = { Title, Author, Content };
-        console.log('check data: ', data);
+        if (!title) {
+            toast.error('Missing title');
+            return
+        }
+        if (!author) {
+            toast.error('Missing author');
+            return
+        }
+        if (!content) {
+            toast.error('Missing content');
+            return
+        }
+        let data = { title, author, content };
+        // console.log('check data: ', data);
+        fetch('http://localhost:8000/blogs', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(res => res.json()).then(res => {
+            if (res) {
+                toast.success('Add success!');
+            }
+        });
         setTitle('');
         setAuthor('');
         setContent('');
+        handleClose();
     }
 
     return (
@@ -57,15 +83,15 @@ function MyModal(props: IProps) {
                     <Form>
                         <Form.Group className="mb-3">
                             <Form.Label>Title</Form.Label>
-                            <Form.Control type="text" placeholder="Hello world" value={Title} onChange={(event) => handleOnChangeTitle(event)} />
+                            <Form.Control type="text" placeholder="Hello world" value={title} onChange={(event) => handleOnChangeTitle(event)} />
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Author</Form.Label>
-                            <Form.Control type="text" placeholder="Noris Nora" value={Author} onChange={(event) => handleOnChangeAuthor(event)} />
+                            <Form.Control type="text" placeholder="Noris Nora" value={author} onChange={(event) => handleOnChangeAuthor(event)} />
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Content</Form.Label>
-                            <Form.Control as="textarea" rows={7} value={Content} onChange={(event) => handleOnChangeContent(event)} />
+                            <Form.Control as="textarea" rows={7} value={content} onChange={(event) => handleOnChangeContent(event)} />
                         </Form.Group>
                     </Form>
                 </Modal.Body>
