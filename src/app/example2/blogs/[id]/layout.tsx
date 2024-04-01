@@ -2,6 +2,13 @@
 import { Container } from 'react-bootstrap'
 import Link from "next/link";
 import 'react-toastify/dist/ReactToastify.css';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: `Blog detail`,
+    description: 'test metadata Blog Detail'
+}
+
 export default function BlogDetailLayout({
     children,
 }: {
