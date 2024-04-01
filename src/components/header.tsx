@@ -16,6 +16,7 @@ function Header() {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Link href="/example2" className="nav-link">Home</Link>
+                        <Link href="/example2/blogs" className="nav-link">Blogs</Link>
                         <Link href="/example2/facebook" className="nav-link">Facebook</Link>
                         <Link href="/example2/tiktok" className="nav-link">Tiktok</Link>
                         <Link href="/example2/youtube" className="nav-link">Youtube</Link>
