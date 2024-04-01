@@ -4,23 +4,23 @@ import { Button } from 'react-bootstrap';
 import MyModal from '@/components/modal'
 import { useState } from 'react';
 import EditModal from './EditModal';
+import Link from 'next/link';
 
 interface IProps {
     blogs: IBlog[]
 }
 
 function MyTable(props: IProps) {
-    const { blogs } = props
+    const { blogs } = props;
 
-    const [show, setShow] = useState<boolean>(false)
+    const [show, setShow] = useState<boolean>(false);
     const handleShow = () => setShow(true);
 
-    const [blogEdit, setBlogEdit] = useState<IBlog | null>(null)
-    const [showEdit, setShowEdit] = useState<boolean>(false)
+    const [blogEdit, setBlogEdit] = useState<IBlog | null>(null);
+    const [showEdit, setShowEdit] = useState<boolean>(false);
     const handleOnClickEdit = () => {
         setShowEdit(true);
-    }
-
+    };
 
     return (
         <div>
@@ -50,7 +50,7 @@ function MyTable(props: IProps) {
                                 <td>{item.title}</td>
                                 <td>{item.author}</td>
                                 <td>
-                                    <Button variant='primary'>Detail</Button>
+                                    <Link className='btn btn-primary' href={`/example2/blogs/${item.id}`}>Detail</Link>
                                     <Button style={{ margin: '0 5px' }} variant='warning' onClick={() => { handleOnClickEdit(); setBlogEdit(item) }}>Edit</Button>
                                     <Button variant='danger'>Delete</Button>
                                 </td>
