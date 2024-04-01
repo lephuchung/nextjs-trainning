@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import useSWR from 'swr'
 import MyTable from '@/components/table'
-import MyModal from '@/components/modal'
+import { mutate } from 'swr'
 
 const Example2 = () => {
 
@@ -25,7 +25,6 @@ const Example2 = () => {
             </div>
         )
     }
-
     console.log('check data: ', data);
 
 
@@ -42,7 +41,7 @@ const Example2 = () => {
         <div>
             <h1>Hahaha, hello world</h1>
             <MyTable
-                blogs={data}
+                blogs={data?.sort((a: any, b: any) => b.id - a.id)}
             />
         </div>
     )
